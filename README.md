@@ -5,4 +5,16 @@ SSE를 적용하여 채팅 메세지가 즉각적으로 페이지에 적용되�
 ![image](https://user-images.githubusercontent.com/84280815/208385679-03cd2efb-3aac-4d34-8c9f-83d3d9be415f.png)
 
 ## Endpoint
-`http://localhost:8080/chat/room`
+### View
+- 채팅창 `GET /chat/room`
+
+### API
+- 채팅 등록 `POST /chat/writeMessage`
+```json
+{
+  "authorName":"String",
+  "content":"String"
+}
+```
+- 채팅 전체 조회 `GET /chat/messages`
+- fromId 이후 채팅 조회 `GET /chat/messages?fromId={id}`
