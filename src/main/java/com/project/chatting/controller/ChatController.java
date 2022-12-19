@@ -2,7 +2,6 @@ package com.project.chatting.controller;
 
 import com.project.chatting.domain.ChatMessage;
 import com.project.chatting.domain.RSData;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,6 +39,11 @@ public class ChatController {
     }
 
     public record MessagesResponse(List<ChatMessage> messages, long count){
+    }
+
+    @GetMapping("/room")
+    public String showRoom() {
+        return "chat/chatRoom";
     }
 
     @GetMapping("/messages")
