@@ -3,10 +3,7 @@ package com.project.chatting.controller;
 import com.project.chatting.domain.ChatMessage;
 import com.project.chatting.domain.RSData;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,11 +17,14 @@ public class ChatController {
     public record writeMessageResponse(long id){
     }
 
+    public record writeMessageRequest(String authorName, String content){
+    }
+
     @PostMapping("/writeMessage")
     @ResponseBody
-    public RSData<writeMessageResponse> writeMessage() {
+    public RSData<writeMessageResponse> writeMessage(@RequestBody writeMessageRequest request) {
 
-        ChatMessage message = new ChatMessage("홍길동", "안녕하세요.");
+        ChatMessage message = new ChatMessage(request.authorName(), request.content());
 
         chatMessages.add(message);
 
