@@ -100,11 +100,16 @@
                     `<li>${message.authorName} : ${message.content}</li>`
                 );
         });
-
-        setTimeout(Chat__loadMore, 500); // 지금은 아니고 0.5 초 후에 실행해라
     }
-
     Chat__loadMore();
+
+    // sse 연결
+    const sse = new EventSource("/sse/connect");
+
+    // 서버로 부터 "chat__messageAdded" 라는 명령이 내려오면 실행
+    sse.addEventListener('chat__messageAdded', e => {
+        Chat__loadMore();
+    });
     // 메시지 읽기 끝
 
 </script>
